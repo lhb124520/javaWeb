@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>超市进销存管理系统</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ddaccordion.js"></script>
+<script type="text/javascript" src="js/jconfirmaction.jquery.js"></script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+</script>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<!-- <script type="text/javascript"> 
+	 /*$(function() {
+		$("#username").blur(function(){
+		alert()
+	});
+	});*/
+	
+	  function showErrMsg($obj, msg) {		
+        if($obj.next() != "undefined") {
+        	
+          $obj.next().remove();
+        }
+        var $newErrMsg = $("<span></span>");
+        $newErrMsg.html("<font color='red'>" + msg + "</font>");
+        //      $obj.after($newErrMsg);
+        $obj.after($newErrMsg);
+        
+      }
+      function test() {
+        	  var userName=$("#username").val();  
+              var userPwd=$("#password").val();           
+              var user={UserName:userName,PassWord:userPwd};  
+              var url="Myservlet.do";  
+              $.post(url, JSON.stringify(user), function(data) {  
+                    console.log(data);  
+                   //$("#messageDiv").html(data);  
+                   var json=JSON.parse(data);  
+                   alert(data);
+                   alert(json.message);
+                   if(json.success=="true"){
+                  	 //1.我们可以利用http的重定向来跳转
+                  	 //window.location.replace("http://www.jb51.net");
+
+                  	 //2.使用href来跳转
+                  	 //window.location.href = "http://www.jb51.net";
+
+                  	 //3.使用jQuery的属性替换方法
+                  	  $(location).attr('href', 'http://www.baidu.com');
+                  	 //$(window).attr('location','http://www.jb51.net');
+                  	 //$(location).prop('href', 'http://www.jb51.net')
+                   }
+               });
+      }
+      function check() {
+        var errCode = 0; //如果有任何一个错误的时候，将错误代码增加1
+        var firstNameVal = $("#username").val();
+        var userPassVal = $("#password").val();
+       
+    
+        if(firstNameVal == "") {
+          showErrMsg($("#username"), "名字不能为空！");
+         
+          errCode++;
+        }
+        else{
+        	$("#username").next().remove();
+        }
+        if(userPassVal=="") {
+        
+          showErrMsg($("#password"), "密码不能为空！");          
+          errCode++;
+        }else{
+        	$("#password").next().remove();
+        }    
+       
+        if(errCode > 0) {        	
+          return false;
+        } else {        	
+          return true;
+        }
+     
+      }
+
+      $(function() {
+        $("#userID").blur(check);
+        $("#username").blur(check);
+        $("#password").blur(check);	
+    	
+        $("#userinfo").submit(check);
+        $("#button").click(test);        
+      
+      });
+     
+</script>-->
+
+<script language="javascript" type="text/javascript" src="js/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
+
+</head>
+<body>
+<div id="main_container">
+
+	<div class="header_login">
+    <div class="logo"><a href="#"></a></div>
+    
+    </div>
+
+     
+         <div class="login_form">
+         
+         <h3 style="padding-left: 250px;">超市进销存管理系统</h3>
+         
+        
+         
+         <form id="userinfo" action="Myservlet.do" method="post" class="niceform" >
+         
+                <fieldset>
+                	<dl>
+                        <dt><label>员工号:</label></dt>
+                        <dd><input type="text" name="userID" id="userID" size="40" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label>员工姓名:</label></dt>
+                        <dd><input type="text" name="username" id="username" size="40" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="password">密码:</label></dt>
+                        <dd><input type="password" name="password" id="password" size="40" /></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><label></label></dt>
+                        <dd>
+                    
+                        </dd>
+                    </dl>
+                    
+                     <dl class="submit"> 
+                     <input type="button" name="ajax" id="button1" value="测试安卓json" />               
+                     <input type="button" name="ajax" id="button" value="测试网页json"/>
+                     	 <input type="submit" name="submit" id="submit" value="登录" />
+                         <a href="register.html" style="text-decoration: none;">
+                         	<input type="button" name="submit" id="submit1" value="顾客请先注册"/> </a>
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+          
+	
+    
+    <div class="footer_login">
+    
+    	
+    	<div class="right_footer_login"></div>
+    
+    </div>
+
+</div>		
+</body>
+</html>
