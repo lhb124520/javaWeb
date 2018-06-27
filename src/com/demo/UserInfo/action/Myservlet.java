@@ -27,7 +27,25 @@ public class Myservlet extends HttpServlet {
         super();        
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("----doGet----");
+		 response.setContentType("text/html;charset=utf-8");
+	        /** 设置响应头允许ajax跨域访问 **/  
+	        response.setHeader("Access-Control-Allow-Origin", "*");  
+	        /* 星号表示所有的异域请求都可以接受， */  
+	        response.setHeader("Access-Control-Allow-Methods", "GET,POST"); 
+		//解析json数据
+        JSONObject json=JsonReader.receivePost(request);  
+        System.out.println("JSONObject"+json); 
+		User user = new User();
+		user.PassWord="666";
+		user.UserName="77";
+		   Writer out = response.getWriter(); 
+		 JSONObject jsonObject=new JSONObject() ;  
+		 jsonObject.put("user", "user");  
+         jsonObject.put("message", "用户登录成功！");
+         jsonObject.put("success", "true");
+         out.write(jsonObject.toString());  
+         out.flush(); 
 	}
 
 	/**
@@ -35,6 +53,7 @@ public class Myservlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("-----进来了------");
+		
 		// response.setContentType("text/html");  
         // 设置字符编码为UTF-8, 这样支持汉字显示  
         // response.setCharacterEncoding("UTF-8");  

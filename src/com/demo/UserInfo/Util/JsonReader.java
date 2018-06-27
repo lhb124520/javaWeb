@@ -14,10 +14,11 @@ public class JsonReader {
 
 		// 读取请求内容
 		System.out.println("读取请求内容");
-		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));		
 		String line = null;
 		StringBuilder sb = new StringBuilder();
 		while ((line = br.readLine()) != null) {
+			System.out.println("br.toString()"+br.readLine());
 			sb.append(line);
 		}
 		// 将json字符串转换为json对象
