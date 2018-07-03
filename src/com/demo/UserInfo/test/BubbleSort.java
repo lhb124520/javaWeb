@@ -9,7 +9,7 @@ public class BubbleSort {
 	 * 平均时间复杂度：O(n2)
 	 * @param arr
 	 */
-	public static void BubbleSort(int [] arr){
+	public static void Sort(int []arr){
 		System.out.println("----------没有排序的数组-----------");
 		for(int i=0;i<arr.length-1;i++){			
 			System.out.print("数字："+arr[i]+"  ");
@@ -70,7 +70,7 @@ public class BubbleSort {
 		for(int i=0;i<10;i++){
 			arr[i]=random.nextInt(10)+1;
 		}
-		BubbleSort(arr);
+		Sort(arr);
 		BubbleSort1(arr);
 	}
 
